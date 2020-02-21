@@ -1,17 +1,22 @@
 {
   "name": "js-clean-code-presentation",
-  "version": "1.0.0",
   "description": "Clean Code concepts adapted for JavaScript",
+  "version": "1.0.0",
   "repository": "https://github.com/mateus4k/js-clean-code-presentation",
   "author": "Mateus Sampaio",
-  "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "mdx-deck main.mdx",
-    "build": "mdx-deck build main.mdx",
+    "start": "mdx-deck index.mdx",
+    "build": "mdx-deck build index.mdx",
+    "pdf": "mdx-deck pdf index.mdx",
+    "image": "mdx-deck screenshot index.mdx",
     "help": "mdx-deck"
   },
+  "dependencies": {
+    "mdx-deck-live-code": "^0.1.0"
+  },
   "devDependencies": {
-    "mdx-deck": "^4.0.0"
+    "mdx-deck": "^1.8.2",
+    "raw-loader": "^1.0.0"
   }
 }

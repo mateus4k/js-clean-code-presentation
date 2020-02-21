@@ -23,7 +23,7 @@ Making code readable for humans 🤯
 
 ---
 
-### Use meaningful and pronounceable variable names
+### Use meaningful and pronounceable variable names 🗣
 
 #### Bad:
 
@@ -35,32 +35,29 @@ Making code readable for humans 🤯
 
 ---
 
-### Use the same vocabulary for the same type of variable
+### Use the same vocabulary for the same type of variable 🦖
 
 #### Bad:
 
 <Code>
-{`getUserInfo();
+  {`getUserInfo();
 getClientData();
 getCustomerRecord();`}
 </Code>
 
 #### Good:
 
-<Code>
-{`getUser();`}
-</Code>
+<Code>{`getUser();`}</Code>
+
 ---
 
-### Use searchable names
+### Use searchable names 🔍
 
 ##### By not naming variables in a meaningful way, we hurt our readers.
 
 #### Bad:
 
-<Code>
-setTimeout(blastOff, 86400000);
-</Code>
+<Code>setTimeout(blastOff, 86400000);</Code>
 
 #### Good:
 
@@ -71,7 +68,7 @@ setTimeout(blastOff, MILLISECONDS_IN_A_DAY);`}
 
 ---
 
-### Avoid Mental Mapping
+### Avoid Mental Mapping 🧠🗺
 
 ##### Explicit variables is better than implicit.
 
@@ -88,18 +85,18 @@ locations.forEach(l => {
   // Wait, what is 'l' for again?
   dispatch(l);
 });`}
-  </Code>
+</Code>
 
 ---
 
-### Avoid Mental Mapping
+### Avoid Mental Mapping 🧠🗺
 
 ##### Explicit variables is better than implicit.
 
 #### Good:
 
 <Code>
-{`const locations = ["Austin", "New York", "San Francisco"];
+  {`const locations = ["Austin", "New York", "San Francisco"];
 locations.forEach(location => {
   doStuff();
   doSomeOtherStuff();
@@ -112,14 +109,14 @@ locations.forEach(location => {
 
 ---
 
-### Don't add unneeded context
+### Don't add unneeded context 👀
 
 ##### If your class/object name tells you something, don't repeat that in your variable name.
 
 #### Bad:
 
 <Code>
-{`const Car = {
+  {`const Car = {
   carMake: "Honda",
   carModel: "Accord",
   carColor: "Blue"
@@ -131,14 +128,14 @@ function paintCar(car) {
 
 ---
 
-### Don't add unneeded context
+### Don't add unneeded context 👀
 
 ##### If your class/object name tells you something, don't repeat that in your variable name.
 
 #### Good:
 
 <Code>
-{`const Car = {
+  {`const Car = {
   make: "Honda",
   model: "Accord",
   color: "Blue"
@@ -150,15 +147,17 @@ function paintCar(car) {
 
 ---
 
-### Use default arguments
+### Use default arguments 🎯
 
 #### Bad:
+
 <Code>{`function createMotorcycleBrand(name) {
   const brandName = name || "Harley Davidson";
   // ...
 }`}</Code>
 
 #### Too Bad:
+
 <Code>{`function createMotorcycleBrand(name) {
   if (!name)
     const brandName = "Harley Davidson";  
@@ -167,9 +166,10 @@ function paintCar(car) {
 
 ---
 
-### Use default arguments
+### Use default arguments 🎯
 
 #### Really Really Bad:
+
 <Code>{`function createMotorcycleBrand(name) {
   if (name) {
     const brandName = name;  
@@ -181,197 +181,294 @@ function paintCar(car) {
 
 ---
 
-### Use default arguments
+### Use default arguments 🎯
 
 #### Good:
+
 <Code>{`function createMotorcycleBrand(name = "Harley Davidson") {
   // ...
 }`}</Code>
 
 ---
 
-<LiveCode
-	title="There's a size for everyone"
-	size="small"
-	code="<p>Small? 👇</p>"
-/>
+# Functions 😂
+
+##### (this is an emoTICON having FUN)
 
 ---
 
-<LiveCode
-	title="There's a size for everyone"
-	size="medium"
-	code="<h3>Medium? 👉</h3>"
-/>
+### Function arguments 💬
+
+- One or two arguments is the ideal case, and three should be avoided if possible.
+
+- Usually, if you have more than two arguments then your function is trying to do too much.
+
+- However, you can use an object if you need a lot of arguments.
 
 ---
 
-<LiveCode
-	title="There's a size for everyone"
-	size="large"
-	code="<h2>Large? 👆</h2>"
-/>
+### Function arguments 💬
+
+#### Bad:
+
+<Code>{`function createMenu(title, body, buttonText, cancellable) {
+  // ...
+}
+createMenu("Foo", "Bar", "Baz", true);
+`}</Code>
 
 ---
 
-<LiveCode size="fullscreen" code="<h1>...or maybe just all in? 🖥</h1>" />
+### Function arguments 💬
+
+#### Good:
+
+<Code>{`function createMenu({ title, body, buttonText, cancellable }) {
+  // ...
+}
+createMenu({
+  title: "Foo",
+  body: "Bar",
+  buttonText: "Baz",
+  cancellable: true
+});`}</Code>
 
 ---
 
-<LiveCode
-	title="Customization"
-	code={`<div>You can style your {"<LiveCode/>"}
-  individually per slide,
-  targeting each element directly:
-  <pre><code>{\`<LiveCode
-  previewProps={{
-    style: {
-      textAlign: 'left',
-      padding: '0.5em'
-      }
-    }}
-  editorProps={{
-    style: {
-      fontSize: '0.5em',
-      background: '#001628'
-    }
+### Functions should do one thing ☝🏽
+
+- When you can isolate a function to just one action, it can be refactored easily and your code will read much cleaner.
+
+---
+
+<Image
+  src="https://blog.da2k.com.br/uploads/2015/01/guga-alves-thinking-outside-of-the-box.jpg"
+  style={{
+    width: 500,
+    height: 700,
+    margin: "auto"
   }}
-/>\`}</code></pre>
-  </div>`}
-	size="large"
-	previewProps={{
-		style: { textAlign: 'left', padding: '0.5em', fontSize: '0.7em' },
-	}}
-	editorProps={{ style: { fontSize: '0.5em', background: '#001628' } }}
 />
 
 ---
 
-<LiveCode
-	code={`<div>Or you can use the global <code>mdx-deck</code> theme:
-  <pre><code>{\`export default {
-  ...theme,
-  liveCode: {
-    container: {
-      // container styles
-    },
-    editor: {
-      // editor styles
-    },
-    preview: {
-      // preview styles
-    },
-    error: {
-      // error styles
+### Functions should do one thing ☝🏽
+
+#### Bad:
+
+<Code>{`function emailClients(clients) {
+  clients.forEach(client => {
+    const clientRecord = database.lookup(client);
+    if (clientRecord.isActive()) {
+      email(client);
     }
-  }
-};\`}</code></pre>
-  </div>`}
-	size="fullscreen"
-	previewProps={{
-		style: { textAlign: 'left', padding: '0.5em', fontSize: '0.7em' },
-	}}
-	editorProps={{ style: { fontSize: '0.5em' } }}
-/>
+  });
+}`}</Code>
 
 ---
 
-<LiveCode
-	title={`Smart handling of focus and arrow keys`}
-	code={`
-  <div>
-  <p>While in the editor, use either one of the key combos</p>
-    <ul>
-      <li>
-        <code>ESC</code>
-      </li>
-      <li>
-        <code>CTRL + M</code> (Windows and Linux)
-      </li>
-      <li>
-        <code>CTRL + SHIFT + M</code> (Mac)
-      </li>
-    </ul>
-	To unfocus the editor, and navigate the deck again
-  </div>`}
-	size="large"
-	previewProps={{
-		style: { textAlign: 'left', padding: '0.5em', fontSize: '0.7em' },
-	}}
-	editorProps={{ style: { fontSize: '0.5em', background: '#001628' } }}
-/>
+### Functions should do one thing ☝🏽
+
+#### Good:
+
+<Code>{`function emailActiveClients(clients) {
+  clients.filter(isActiveClient).forEach(email);
+}
+function isActiveClient(client) {
+  const clientRecord = database.lookup(client);
+  return clientRecord.isActive();
+}`}</Code>
 
 ---
 
-<LiveCode
-	title="It even does React Functional Components, thanks to react-live"
-	code={`() => {
-  const componentType = "Functional Component";
-  return (<p>Hi, I'm a {componentType}!</p>)
-}`}
-	editorProps={{ style: { fontSize: '0.5em', background: '#001628' } }}
-/>
+### Function names should say what they do 🤹🏽‍♂️
+
+#### Bad:
+
+<Code>{`function addToDate(date, month) {
+  // ...
+}
+const date = new Date();
+// It's hard to tell from the function name what is added
+addToDate(date, 1);`}</Code>
 
 ---
 
-<LiveCode
-	title="... and classes"
-	code={`class MyComp extends React.Component {
-  constructor(){
-    this.state = {
-    value: 'class'
+### Function names should say what they do 🤹🏽‍♂️
+
+#### Good:
+
+<Code>{`function addMonthToDate(month, date) {
+  // ...
+}
+const date = new Date();
+addMonthToDate(1, date);
+`}</Code>
+
+---
+
+### Remove duplicate code 🔥
+
+#### Bad:
+
+<Code>{`function showDeveloperList(developers) {
+  developers.forEach(developer => {
+    const expectedSalary = developer.calculateExpectedSalary();
+    const experience = developer.getExperience();
+    const githubLink = developer.getGithubLink();
+    const data = {
+      expectedSalary,
+      experience,
+      githubLink
     };
-  }
-  render() {
-    return (
-      <div>
-        <p>
-					This is a {this.state.value} component!
-				</p>
-        <input
-		  		onChange={
-			  		(e) => this.setState({value: e.target.value})
-					}
-		  		value={this.state.value}
-				/>
-      </div>
-	  );
-  }
+    render(data);
+  });
+}`}</Code>
+
+---
+
+#### Bad:
+
+<Code>{`function showManagerList(managers) {
+  managers.forEach(manager => {
+    const expectedSalary = manager.calculateExpectedSalary();
+    const experience = manager.getExperience();
+    const portfolio = manager.getMBAProjects();
+    const data = {
+      expectedSalary,
+      experience,
+      portfolio
+    };
+    render(data);
+  });
+}`}</Code>
+
+---
+
+#### Good:
+
+<Code>{`function showEmployeeList(employees) {
+  employees.forEach(employee => {
+    const expectedSalary = employee.calculateExpectedSalary();
+    const experience = employee.getExperience();
+    const data = {
+      expectedSalary,
+      experience
+    };
+    switch (employee.type) {
+      case "manager":
+        data.portfolio = employee.getMBAProjects();
+        break;
+      case "developer":
+        data.githubLink = employee.getGithubLink();
+        break;
+    }
+    render(data);
+  });
+}`}</Code>
+
+---
+
+# Challenge Time 🐣
+
+---
+
+<LiveCode
+title="Challenge Time 🐣"
+code={`() => {
+return (
+<p>While you read this a new Javascript framework is born</p>)
 }`}
-	size="large"
-	editorProps={{ style: { fontSize: '0.5em', background: '#001628' } }}
+editorProps={{ style: { fontSize: '0.7em', background: '#282a36' } }}
+previewProps={{ style: { display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center', color: 'black' } }}
 />
 
 ---
 
-<LiveCode
-	title="In fact, it does anything react-live does!"
-	code={`const sayWhaaat = 'Hello';
-const toWhooo = 'world!';
-const GreetDaPeeps = () => (
-		<p>
-			{sayWhaaat} {toWhooo}
-		</p>
-	);
-render(GreetDaPeeps);`}
-	providerProps={{ noInline: true }}
-	editorProps={{ style: { fontSize: '0.5em', background: '#001628' } }}
-/>
+### Don't use flags as function parameters 🏳️
+
+#### Bad:
+
+<Code>{`function createFile(name, temp) {
+  if (temp) {
+    fs.create('./temp/' + name);
+  } else {
+    fs.create(name);
+  }
+}`}</Code>
 
 ---
 
-<LiveCode
-	code={require('!raw-loader!./external-file.js')}
-	size="large"
-	previewProps={{ style: { fontSize: '0.8em' } }}
-	editorProps={{ style: { fontSize: '0.5em', background: '#001628' } }}
-/>
+### Don't use flags as function parameters 🏳️
+
+#### Good:
+
+<Code>{`function createFile(name) {
+  fs.create(name);
+}
+function createTempFile(name) {
+  createFile('./temp/' + name);
+}`}</Code>
 
 ---
 
-# 🙋‍♀️
+### Avoid Side Effects 💉
 
-### See more at the [mdx-deck-live-code repository](https://github.com/jreinhold/mdx-deck-live-code)
+##### Global Variables
 
-By [@DrReinhold](https://twitter.com/drreinhold)
-```
+#### Bad:
+
+<Code>{`// Global variable referenced by following function.
+// If we had another function that used this name, now it'd be an array and it could break it.
+let name = "Jorge Luis";
+function splitIntoFirstAndLastName() {
+  name = name.split(" ");
+}
+splitIntoFirstAndLastName();
+console.log(name); // ['Jorge', 'Luis'];`}</Code>
+
+---
+
+### Avoid Side Effects 💉
+
+#### Good:
+
+<Code>{`function splitIntoFirstAndLastName(name) {
+  return name.split(" ");
+}
+const name = "Jorge Luis";
+const newName = splitIntoFirstAndLastName(name);
+console.log(name); // 'Jorge Luis';
+console.log(newName); // ['Jorge', 'Luis'];`}</Code>
+
+---
+
+### Avoid Side Effects 🐛
+
+##### State Immutability
+
+#### Bad:
+
+<Code>{`const addItemToCart = (cart, item) => {
+  cart.push({ item, date: Date.now() });
+};`}</Code>
+
+#### Good:
+
+<Code>{`const addItemToCart = (cart, item) => {
+  return [...cart, { item, date: Date.now() }];
+};`}</Code>
+
+---
+
+## Any questions?
+
+# 🤔
+
+---
+
+# 🙋🏽‍♂️
+
+### Check this presentation code at [Github Repository](https://github.com/mateus4k/js-clean-code-presentation)
+
+by [@mateus4k](https://github.com/mateus4k) 👨🏽‍💻

@@ -1,21 +1,192 @@
-import { Head } from 'mdx-deck';
-export { default as theme } from './theme';
-import { LiveCode } from 'mdx-deck-live-code';
+import { Image, Head, Code } from "mdx-deck";
+export { default as theme } from "./theme";
+import { LiveCode } from "mdx-deck-live-code";
 
 <Head>
-	<title>mdx-deck-live-code demo</title>
+  <title>JS Clean Code Presentation</title>
 </Head>
 
-# [mdx-deck-live-code](https://github.com/jreinhold/mdx-deck-live-code) Demonstration 🤯
+# [Clean Code w/ JavaScript](https://github.com/mateus4k/js-clean-code-presentation)
 
-Live code JSX and Javascript with previews, directly in your slides
+Making code readable for humans 🤯
+
+<Image src="https://www.memecreator.org/static/images/memes/5074211.jpg"
+ style={{
+    width: 300,
+    height: 400,
+    margin: 'auto',
+ }}
+ />
+---
+
+# Variables ✍️
 
 ---
 
-<LiveCode
-	title="Try editing the Hello World example below! 👇🏾"
-	code="<p>🙋‍♀️ 🌍</p>"
-/>
+### Use meaningful and pronounceable variable names
+
+#### Bad:
+
+<Code>const yyyymmdstr = moment().format("YYYY/MM/DD");</Code>
+
+#### Good:
+
+<Code>const currentDate = moment().format("YYYY/MM/DD");</Code>
+
+---
+
+### Use the same vocabulary for the same type of variable
+
+#### Bad:
+
+<Code>
+{`getUserInfo();
+getClientData();
+getCustomerRecord();`}
+</Code>
+
+#### Good:
+
+<Code>
+{`getUser();`}
+</Code>
+---
+
+### Use searchable names
+
+##### By not naming variables in a meaningful way, we hurt our readers.
+
+#### Bad:
+
+<Code>
+setTimeout(blastOff, 86400000);
+</Code>
+
+#### Good:
+
+<Code>
+  {`const MILLISECONDS_IN_A_DAY = 86_400_000;
+setTimeout(blastOff, MILLISECONDS_IN_A_DAY);`}
+</Code>
+
+---
+
+### Avoid Mental Mapping
+
+##### Explicit variables is better than implicit.
+
+#### Bad:
+
+<Code>
+  {`const locations = ["Austin", "New York", "San Francisco"];
+locations.forEach(l => {
+  doStuff();
+  doSomeOtherStuff();
+  // ...
+  // ...
+  // ...
+  // Wait, what is 'l' for again?
+  dispatch(l);
+});`}
+  </Code>
+
+---
+
+### Avoid Mental Mapping
+
+##### Explicit variables is better than implicit.
+
+#### Good:
+
+<Code>
+{`const locations = ["Austin", "New York", "San Francisco"];
+locations.forEach(location => {
+  doStuff();
+  doSomeOtherStuff();
+  // ...
+  // ...
+  // ...
+  dispatch(location);
+});`}
+</Code>
+
+---
+
+### Don't add unneeded context
+
+##### If your class/object name tells you something, don't repeat that in your variable name.
+
+#### Bad:
+
+<Code>
+{`const Car = {
+  carMake: "Honda",
+  carModel: "Accord",
+  carColor: "Blue"
+};
+function paintCar(car) {
+  car.carColor = "Red";
+}`}
+</Code>
+
+---
+
+### Don't add unneeded context
+
+##### If your class/object name tells you something, don't repeat that in your variable name.
+
+#### Good:
+
+<Code>
+{`const Car = {
+  make: "Honda",
+  model: "Accord",
+  color: "Blue"
+};
+function paintCar(car) {
+  car.color = "Red";
+}`}
+</Code>
+
+---
+
+### Use default arguments
+
+#### Bad:
+<Code>{`function createMotorcycleBrand(name) {
+  const brandName = name || "Harley Davidson";
+  // ...
+}`}</Code>
+
+#### Too Bad:
+<Code>{`function createMotorcycleBrand(name) {
+  if (!name)
+    const brandName = "Harley Davidson";  
+  // ...
+}`}</Code>
+
+---
+
+### Use default arguments
+
+#### Really Really Bad:
+<Code>{`function createMotorcycleBrand(name) {
+  if (name) {
+    const brandName = name;  
+  } else {
+    const brandName = "Harley Davidson";
+  }
+  // ...
+}`}</Code>
+
+---
+
+### Use default arguments
+
+#### Good:
+<Code>{`function createMotorcycleBrand(name = "Harley Davidson") {
+  // ...
+}`}</Code>
 
 ---
 
@@ -49,7 +220,7 @@ Live code JSX and Javascript with previews, directly in your slides
 
 <LiveCode
 	title="Customization"
-	code={`<div>You can style your {"<LiveCode/>"} 
+	code={`<div>You can style your {"<LiveCode/>"}
   individually per slide,
   targeting each element directly:
   <pre><code>{\`<LiveCode
@@ -203,3 +374,4 @@ render(GreetDaPeeps);`}
 ### See more at the [mdx-deck-live-code repository](https://github.com/jreinhold/mdx-deck-live-code)
 
 By [@DrReinhold](https://twitter.com/drreinhold)
+```

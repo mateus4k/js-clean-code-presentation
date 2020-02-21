@@ -1,5 +1,7 @@
 # JavaScript Clean Code Presentation
 
+![Screenshot](https://user-images.githubusercontent.com/30202634/75005513-7b88cf80-544d-11ea-86d9-dff922076817.jpg)
+
 ## Development
 
 To run the presentation deck in development mode:
@@ -30,6 +32,7 @@ To export an image of the title slide:
 yarn run image
 ```
 
-Based on [Jeppe Reinhold][] repo.
+Based on [Jeppe Reinhold][] and [Ryan McDermott][] repos.
 
 [jeppe reinhold]: https://github.com/JReinhold/mdx-deck-live-code
+[ryan mcdermott]: https://github.com/ryanmcdermott/clean-code-javascript
